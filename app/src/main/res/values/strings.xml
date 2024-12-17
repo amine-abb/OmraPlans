@@ -1,0 +1,24 @@
+<resources>
+    <string name="app_name">OmraPlan</string>
+    <string name="infoJun">عمرة يناير
+رحلة مباشرة الى المدينة المنورة
+</string>
+    <string name="infoFeb">عمرة العطلة المدرسية
+رحلة مباشرة الى المدينة المنورة</string>
+    <string name="inforamdan">عمرة شهر رمضان
+طيران مباشر</string>
+    <string name="infochaarban">عمرة شعبان-رمضان
+طيران مباشر</string>
+    <string name="timeJun">15 يوما
+من 07 الى 21 يناير 2025
+من 16 الى 30 يناير 2025
+من 23 يناير الى 06 فبراير 2025
+</string>
+    <string name="timeFeb">7 ايام
+من 25 يناير الى 02 فبراير 2025
+من 26 يناير الى 03 فبراير 2025
+</string>
+    <string name="timechaaban">لمدة  27 يوما
+من 11 فبراير الى 09مارس 2025</string>
+    <string name="tameramdan">من 27 فبراير الى 14 ابريل 2025</string>
+</resources>
