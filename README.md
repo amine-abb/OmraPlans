@@ -1,2 +1,2 @@
 # OmraPlans
-practice what i m learning 
+practice what i learn
