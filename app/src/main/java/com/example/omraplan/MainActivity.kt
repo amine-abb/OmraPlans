@@ -1,6 +1,5 @@
 package com.example.omraplan
 
-import android.graphics.Paint.Align
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -17,10 +16,10 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.material3.Button
-import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedButton
+import androidx.compose.material3.OutlinedCard
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -31,16 +30,22 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.Color.Companion.Black
+import androidx.compose.ui.graphics.Color.Companion.Cyan
+import androidx.compose.ui.graphics.Color.Companion.Red
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.omraplan.ui.theme.OmraPlanTheme
+import com.example.omraplan.ui.theme.Purple40
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -76,8 +81,8 @@ fun OmraScreen(modifier: Modifier = Modifier) {
         Spacer(modifier = Modifier.padding(10.dp))
         TextInfo(modifier = Modifier, infoPlan = infoPlan,infoTime = infoTime )
         Spacer(modifier = Modifier.padding(10.dp))
-        Row(modifier = Modifier.fillMaxWidth(), Arrangement.SpaceEvenly) {
-            Button(onClick = {
+        Row(modifier = Modifier.fillMaxWidth(1f).padding(20.dp), Arrangement.spacedBy(30.dp)) {
+            OutlinedButton(onClick = {
                 when (currentPlan) {
                     firstplan -> {
                         currentPlan = fourthplan
@@ -102,10 +107,10 @@ fun OmraScreen(modifier: Modifier = Modifier) {
                         infoTime = R.string.timechaaban
                     }
                 }
-            }) {
-                Text(text = "Back")
+            }, Modifier.weight(2f)) {
+                Text(text = "Back", color = Black)
             }
-            Button(onClick = {
+            OutlinedButton(onClick = {
                 when (currentPlan) {
                     firstplan -> {
                         currentPlan = secondplan
@@ -129,8 +134,8 @@ fun OmraScreen(modifier: Modifier = Modifier) {
                         infoTime = R.string.timeJun
                     }
                 }
-            }) {
-                Text(text = "Next")
+            }, Modifier.weight(2f)) {
+                Text(text = "Next", color = Black)
             }
         }
 
@@ -158,17 +163,35 @@ fun DisplayPlan(
 
 @Composable
 fun TextInfo(modifier: Modifier=Modifier,@StringRes infoPlan: Int, @StringRes infoTime: Int) {
-    Card(modifier = Modifier.padding(20.dp,30.dp) , colors = CardDefaults.cardColors(
-        containerColor = MaterialTheme.colorScheme.surfaceVariant ) ) {
+
+
+    val gradientColors = listOf(Cyan, Red , Purple40 /*...*/)
+
+    OutlinedCard(modifier = Modifier.padding(20.dp,30.dp) , colors = CardDefaults.cardColors(
+        containerColor = MaterialTheme.colorScheme.surface,
+    ),
+        border = BorderStroke(1.dp, Color.Black)  ) {
         Column (
             modifier = Modifier.fillMaxWidth()
                 .padding(20.dp) ,Arrangement.Center,Alignment.CenterHorizontally){
-    Text(text = stringResource(infoPlan), fontSize = 35.sp, fontWeight = FontWeight.Bold, textAlign = TextAlign.Center)
-    Text(modifier = Modifier,text = stringResource(infoTime), fontSize = 20.sp, textAlign = TextAlign.Center)
+    Text(text = stringResource(infoPlan),
+        fontSize = 35.sp,
+        fontWeight = FontWeight.Bold,
+        textAlign = TextAlign.Center,
+        style = TextStyle(
+        brush = Brush.linearGradient(
+        colors = gradientColors
+                )
+
+                ))
+    Text(modifier = Modifier,text = stringResource(infoTime),
+        fontWeight = FontWeight.Bold,
+        fontSize = 20.sp,
+        textAlign = TextAlign.Center)
 
 }}}
 
-@Preview
+@Preview(showBackground = true )
 @Composable
 fun OmraPlanPreview(){
     OmraPlanTheme{
